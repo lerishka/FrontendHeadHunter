@@ -1,0 +1,11 @@
+.vacancyListWrapper {
+  margin-top: 22px;
+}
+
+.cardListWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 16px;
+}

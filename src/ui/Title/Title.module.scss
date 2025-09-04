@@ -1,0 +1,17 @@
+.titleWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  line-height: normal;
+  gap: 4px;
+}
+
+.title {
+  font-size: 26px;
+}
+
+.subTitle {
+  font-size: 20px;
+  color: #838383;
+}

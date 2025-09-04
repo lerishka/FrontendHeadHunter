@@ -1,0 +1,36 @@
+.tagsInputWrapper {
+  width: 317px;
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.pillsInputWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  gap: 8px;
+}
+
+.input {
+  width: 100%;
+  margin-bottom: 4px;
+  border: 1px solid #ccc !important;
+  border-radius: 8px;
+  padding: 14px 10px !important;
+}
+
+.pill {
+  background-color: #f6f6f7 !important;
+}
+
+.plusButton {
+  max-width: 34px;
+  background-color: #90c5f3 !important;
+}
+
+button > span > span {
+  overflow: visible !important;
+}
