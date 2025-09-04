@@ -27,6 +27,12 @@ export default function SearchBar() {
         radius={8}
         className={styles.input}
         onChange={handleUpdateSearch}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            dispatch(setSearchText(text)), setText("");
+          }
+        }}
         value={text}
       />
       <Button

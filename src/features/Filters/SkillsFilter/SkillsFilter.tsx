@@ -36,6 +36,12 @@ export default function SkillsFilter() {
             placeholder="Навык"
             className={styles.input}
             onChange={handleTextTag}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                handleAddTag();
+              }
+            }}
           />
           <Button
             radius={8}
