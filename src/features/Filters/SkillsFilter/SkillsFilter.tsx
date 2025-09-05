@@ -23,6 +23,7 @@ export default function SkillsFilter() {
   };
 
   const handleAddTag = () => {
+    if (!textTag) return;
     dispatch(setSkills([...skills, textTag]));
     setTextTag("");
   };
@@ -53,17 +54,19 @@ export default function SkillsFilter() {
           </Button>
         </div>
         <Pill.Group gap={5}>
-          {skills.map((skill) => (
-            <Pill
-              key={skill}
-              data-testid={`skill-${skill}`}
-              withRemoveButton
-              onRemove={() => handleRemoveTag(skill)}
-              className={styles.pill}
-            >
-              {skill}
-            </Pill>
-          ))}
+          {skills.length > 0
+            ? skills.map((skill) => (
+                <Pill
+                  key={skill}
+                  data-testid={`skill-${skill}`}
+                  withRemoveButton
+                  onRemove={() => handleRemoveTag(skill)}
+                  className={styles.pill}
+                >
+                  {skill}
+                </Pill>
+              ))
+            : null}
         </Pill.Group>
       </PillsInput>
     </div>

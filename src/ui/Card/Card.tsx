@@ -6,6 +6,7 @@ const workFormatColors: Record<WorkFormat, { label: string; color: string }> = {
   REMOTE: { label: "Можно удаленно", color: "#4263EB" },
   ON_SITE: { label: "Офис", color: "#E7E7E7" },
   HYBRID: { label: "Гибрид", color: "#0F0F10" },
+  FIELD_WORK: { label: "Разъездная", color: "#0F0F10" },
 };
 
 type CardProps = VacancyCard;
@@ -21,9 +22,6 @@ export default function Card({
   workFormats,
   directLink,
 }: CardProps) {
-  const handleDirectLink = (directLink: string) => {
-    window.open(directLink, "_blank");
-  };
   return (
     <div className={styles.cardWrapper}>
       <div className={styles.infoBlock}>
@@ -83,14 +81,14 @@ export default function Card({
         <Button color="gray" className={styles.customButton}>
           Смотреть вакансию
         </Button>
-        <Button
-          color="gray"
-          variant="light"
-          className={styles.customButton}
-          onClick={() => handleDirectLink(directLink)}
+        <a
+          href={directLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.customA}
         >
           Откликнуться
-        </Button>
+        </a>
       </div>
     </div>
   );

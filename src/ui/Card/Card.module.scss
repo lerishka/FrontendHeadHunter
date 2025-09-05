@@ -78,3 +78,18 @@ li {
 .customButton {
   font-weight: 400 !important;
 }
+
+.customA {
+  font-size: 14px;
+  color: #0f0f10;
+  background-color: #cfcfcf;
+  padding: 18px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  text-decoration: none;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: #b7b7b7;
+  }
+}

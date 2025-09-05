@@ -44,14 +44,22 @@ export const fetchVacancies = createAsyncThunk<
       const { searchText, cityId, skills, page } = filters;
 
       const params = new URLSearchParams();
-      const urlParts = [];
-      if (searchText) urlParts.push(searchText);
-      if (skills.length) urlParts.push(...skills);
+      let searchQuery = searchText;
 
-      const queryText = urlParts.join(" OR ");
-      console.log(queryText);
+      if (skills.length > 0) {
+        const skillsQuery = skills.join(" OR ");
+        if (searchQuery) {
+          searchQuery += ` AND (${skillsQuery})`;
+        } else {
+          searchQuery = skillsQuery;
+        }
+      }
+      if (searchQuery) {
+        params.append("text", searchQuery);
+        params.append("search_field", "name");
+        params.append("search_field", "company_name");
+      }
 
-      if (queryText) params.append("text", queryText);
       if (!(cityId === "all")) {
         params.append("area", cityId);
       } else {

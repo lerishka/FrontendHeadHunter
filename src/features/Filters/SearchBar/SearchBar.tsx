@@ -18,6 +18,13 @@ export default function SearchBar() {
     setText(e.target.value);
   };
 
+  const handleSearch = () => {
+    const cleaned = text.trim();
+    if (!cleaned) return;
+    dispatch(setSearchText(cleaned));
+    setText("");
+  };
+
   return (
     <div className={styles.searchBarWrapper}>
       <Input
@@ -30,17 +37,12 @@ export default function SearchBar() {
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             e.preventDefault();
-            dispatch(setSearchText(text)), setText("");
+            handleSearch();
           }
         }}
         value={text}
       />
-      <Button
-        size="md"
-        onClick={() => {
-          dispatch(setSearchText(text)), setText("");
-        }}
-      >
+      <Button size="md" onClick={handleSearch}>
         Найти
       </Button>
     </div>

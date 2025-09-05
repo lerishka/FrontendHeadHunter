@@ -1,4 +1,4 @@
-export type WorkFormat = "REMOTE" | "ON_SITE" | "HYBRID";
+export type WorkFormat = "REMOTE" | "ON_SITE" | "HYBRID" | "FIELD_WORK";
 
 export type VacancyCard = {
   id: string;
