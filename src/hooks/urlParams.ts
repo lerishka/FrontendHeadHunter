@@ -19,10 +19,13 @@ export default function useSyncFiltersWithURL() {
   }, []);
 
   useEffect(() => {
-    setSearchParams({
-      searchText: filters.searchText,
-      cityId: filters.cityId,
-      skills: filters.skills.join(","),
-    });
-  }, [filters]);
+    const params: Record<string, string> = {};
+
+    if (filters.searchText) params.searchText = filters.searchText;
+    if (filters.cityId && filters.cityId !== "all")
+      params.cityId = filters.cityId;
+    if (filters.skills.length > 0) params.skills = filters.skills.join(",");
+
+    setSearchParams(params);
+  }, [filters.searchText, filters.cityId, filters.skills, filters.page]);
 }
