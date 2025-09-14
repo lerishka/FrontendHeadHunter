@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { IconUserCircle } from "@tabler/icons-react";
 import { useMantineTheme } from "@mantine/core";
 import logo from "../../assets/logo.svg";
@@ -17,7 +18,14 @@ export default function Header() {
 
         <div className={styles.center}>
           <div className={styles.link}>
-            <p>Вакансии FE</p>
+            <NavLink
+              to="/vacancies"
+              className={({ isActive }) =>
+                isActive ? `${styles.myLink} ${styles.active}` : styles.myLink
+              }
+            >
+              Вакансии FE
+            </NavLink>
             <span className={styles.dot}></span>
           </div>
 
@@ -27,7 +35,14 @@ export default function Header() {
               size={24}
               stroke={1.5}
             />
-            <p style={{ color: theme.colors.gray[3] }}>Обо мне</p>
+            <NavLink
+              to="/user"
+              className={({ isActive }) =>
+                isActive ? `${styles.myLink} ${styles.active}` : styles.myLink
+              }
+            >
+              Обо мне
+            </NavLink>
           </div>
         </div>
       </div>

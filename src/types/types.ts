@@ -11,4 +11,5 @@ export type VacancyCard = {
   workFormats: WorkFormat[];
   city: string;
   directLink: string;
+  description?: string;
 };

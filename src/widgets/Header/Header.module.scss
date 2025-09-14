@@ -48,3 +48,13 @@ header {
   vertical-align: middle;
   background-color: var(--mantine-color-indigo-7);
 }
+
+.myLink {
+  all: revert;
+  text-decoration: none;
+  color: #878787;
+}
+
+.active {
+  color: #000000;
+}

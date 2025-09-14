@@ -1,6 +1,7 @@
 import Button from "../Button/Button";
 import type { VacancyCard, WorkFormat } from "../../types/types";
 import styles from "./Card.module.scss";
+import { Link } from "react-router-dom";
 
 const workFormatColors: Record<WorkFormat, { label: string; color: string }> = {
   REMOTE: { label: "Можно удаленно", color: "#4263EB" },
@@ -9,9 +10,10 @@ const workFormatColors: Record<WorkFormat, { label: string; color: string }> = {
   FIELD_WORK: { label: "Разъездная", color: "#0F0F10" },
 };
 
-type CardProps = VacancyCard;
+type CardProps = VacancyCard & { variant?: "list" | "details" };
 
 export default function Card({
+  id,
   name,
   salaryFrom,
   salaryTo,
@@ -21,6 +23,7 @@ export default function Card({
   city,
   workFormats,
   directLink,
+  variant,
 }: CardProps) {
   return (
     <div className={styles.cardWrapper}>
@@ -77,19 +80,36 @@ export default function Card({
         <p className={styles.mainInfo}>{city || "Город не указан"}</p>
       </div>
 
-      <div className={styles.actionButons}>
-        <Button color="gray" className={styles.customButton}>
-          Смотреть вакансию
-        </Button>
-        <a
-          href={directLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.customA}
-        >
-          Откликнуться
-        </a>
-      </div>
+      {variant === "details" && (
+        <div className={styles.actionButons}>
+          <a
+            href={directLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.customLinkDetails}
+          >
+            Откликнуться на hh.ru
+          </a>
+        </div>
+      )}
+
+      {variant === "list" && (
+        <div className={styles.actionButons}>
+          <Link to={`/vacancies/${id}`}>
+            <Button color="gray" className={styles.customButton}>
+              Смотреть вакансию
+            </Button>
+          </Link>
+          <a
+            href={directLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.customLink}
+          >
+            Откликнуться
+          </a>
+        </div>
+      )}
     </div>
   );
 }
