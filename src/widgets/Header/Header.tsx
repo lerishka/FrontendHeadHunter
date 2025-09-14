@@ -36,7 +36,7 @@ export default function Header() {
               stroke={1.5}
             />
             <NavLink
-              to="/vacancies/user"
+              to="/user"
               className={({ isActive }) =>
                 isActive ? `${styles.myLink} ${styles.active}` : styles.myLink
               }
