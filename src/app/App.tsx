@@ -9,10 +9,10 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<MainLayout />}>
+        <Route path="/vacancies" element={<MainLayout />}>
           <Route index element={<VacanciesPage />} />
-          <Route path="vacancies" element={<VacanciesPage />} />
-          <Route path="vacancies/:id" element={<IdVacancyPage />} />
+          {/* <Route path="vacancies" element={<VacanciesPage />} /> */}
+          <Route path=":id" element={<IdVacancyPage />} />
           <Route path="user" element={<UserPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
