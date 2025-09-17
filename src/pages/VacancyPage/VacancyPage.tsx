@@ -1,21 +1,12 @@
-import { useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import Card from "../../ui/Card/Card";
-import styles from "./VacancyPage.module.scss";
-import { useGetVacancyByIdQuery } from "../../services/vacanciesApi";
 import DescriptionCard from "../../ui/DescriptionCard/DescriptionCard";
+import styles from "./VacancyPage.module.scss";
 
 export default function VacancyPage() {
-  const { id } = useParams();
-  const { data: vacancy, isLoading, isError } = useGetVacancyByIdQuery(id!);
+  const vacancy = useLoaderData();
 
-  if (isLoading)
-    return (
-      <div className={styles.pageWrapper}>
-        <p>Загрузка вакансии</p>
-      </div>
-    );
-
-  if (!vacancy || isError)
+  if (!vacancy)
     return (
       <div className={styles.pageWrapper}>
         <p>Вакансия не найдена</p>

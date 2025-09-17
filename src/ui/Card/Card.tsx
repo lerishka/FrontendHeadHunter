@@ -1,7 +1,7 @@
 import Button from "../Button/Button";
 import type { VacancyCard, WorkFormat } from "../../types/types";
-import styles from "./Card.module.scss";
 import { Link } from "react-router-dom";
+import styles from "./Card.module.scss";
 
 const workFormatColors: Record<WorkFormat, { label: string; color: string }> = {
   REMOTE: { label: "Можно удаленно", color: "#4263EB" },

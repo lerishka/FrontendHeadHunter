@@ -3,9 +3,12 @@ import { vacanciesApi } from "../services/vacanciesApi";
 
 export const vacanciesLoader = async ({ request }: { request: Request }) => {
   const url = new URL(request.url);
+  const pathname = url.pathname;
+
+  let cityId = "1";
+  if (pathname.includes("/petersburg")) cityId = "2";
 
   const searchText = url.searchParams.get("searchText") ?? "";
-  const cityId = url.searchParams.get("cityId") ?? "all";
   const skills = url.searchParams.get("skills")
     ? url.searchParams.get("skills")!.split(",")
     : ["React", "Vue", "Svelte"];

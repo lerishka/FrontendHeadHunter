@@ -12,7 +12,7 @@ export default function CityFilter() {
   );
 
   const cities = [
-    { value: "all", label: "Все города" },
+    // { value: "all", label: "Все города" },
     { value: "1", label: "Москва" },
     { value: "2", label: "Санкт-Петербург" },
   ];

@@ -1,35 +1,52 @@
 import Title from "../../ui/Title/Title";
 import SearchBar from "../../features/Filters/SearchBar/SearchBar";
 import SkillsFilter from "../../features/Filters/SkillsFilter/SkillsFilter";
-import CityFilter from "../../features/Filters/CityFilter/CityFilter";
 import VacancyList from "../../features/VacancyList/VacancyList";
-// import { useEffect } from "react";
-// import { fetchVacancies } from "../../store/vacanciesSlice";
 import { useTypedSelector } from "../../hooks/redux";
 import Pagination from "../../ui/Pagination/Pagination";
 import type { RootState } from "../../store";
-import styles from "./VacanciesPage.module.scss";
 import { useGetVacanciesQuery } from "../../services/vacanciesApi";
 import useSyncFiltersWithURL from "../../hooks/urlParams";
+import { useLoaderData } from "react-router-dom";
+import type { VacancyCard } from "../../types/types";
+import { useEffect, useState } from "react";
+import { LocationTabs } from "../../widgets/LocationTabs/LocationTabs";
+import styles from "./VacanciesPage.module.scss";
 
 export default function VacanciesPage() {
+  const initialVacancies = useLoaderData() as VacancyCard[];
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+
   useSyncFiltersWithURL();
+
   const { filters } = useTypedSelector((state: RootState) => state.vacancies);
   const {
     data: vacancies = [],
     isLoading,
     isError,
     error,
-  } = useGetVacanciesQuery({
-    searchText: filters.searchText,
-    cityId: filters.cityId,
-    skills: filters.skills,
-    page: filters.page,
-  });
+    isFetching,
+  } = useGetVacanciesQuery(
+    {
+      searchText: filters.searchText,
+      cityId: filters.cityId,
+      skills: filters.skills,
+      page: filters.page,
+    },
+    { skip: isInitialLoad }
+  );
 
-  // const isLoading = status === "loading";
+  useEffect(() => {
+    if (initialVacancies.length > 0) {
+      setIsInitialLoad(false);
+    }
+  }, [initialVacancies]);
+
+  if (isInitialLoad && initialVacancies.length === 0) {
+    return <div>Загрузка...</div>;
+  }
+
   const emptyResult = vacancies.length === 0;
-  // const isError = status === "rejected";
 
   return (
     <>
@@ -44,9 +61,8 @@ export default function VacanciesPage() {
         <div className={styles.mainPartOfPage}>
           <div className={styles.filtersWrapper}>
             <SkillsFilter />
-            <CityFilter />
+            {/* <CityFilter /> */}
           </div>
-          {isLoading && <div className={styles.loading}>Идет загрузка</div>}
           {!isLoading && isError && (
             <div className={styles.loading}>
               Ошибка: {JSON.stringify(error)}
@@ -57,6 +73,9 @@ export default function VacanciesPage() {
           )}
           {!isLoading && !emptyResult && (
             <div className={styles.vacanciesPartWrapper}>
+              <div className={styles.tabsWrapper}>
+                <LocationTabs />
+              </div>
               <VacancyList vacancies={vacancies} />
               <Pagination />
             </div>

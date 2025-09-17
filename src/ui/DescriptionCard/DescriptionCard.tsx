@@ -1,5 +1,5 @@
-import styles from "./DescriptionCard.module.scss";
 import type { VacancyCard } from "../../types/types";
+import styles from "./DescriptionCard.module.scss";
 
 type CardProps = VacancyCard;
 
