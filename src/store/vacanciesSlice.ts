@@ -21,7 +21,7 @@ const initialState: VacanciesState = {
   error: "",
   filters: {
     searchText: "",
-    cityId: "all",
+    cityId: "1",
     skills: ["React", "Vue", "Svelte"],
     page: 1,
   },

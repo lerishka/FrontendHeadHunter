@@ -3,7 +3,6 @@ import { createRoot } from "react-dom/client";
 import App from "./app/App.tsx";
 import { store } from "./store";
 import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
 import "@mantine/core/styles.css";
 import { MantineProvider, createTheme } from "@mantine/core";
 import "./index.css";
@@ -70,9 +69,7 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
       <MantineProvider theme={theme} defaultColorScheme="auto">
-        <BrowserRouter basename="/FrontendHeadHunter">
-          <App />
-        </BrowserRouter>
+        <App />
       </MantineProvider>
     </Provider>
   </StrictMode>

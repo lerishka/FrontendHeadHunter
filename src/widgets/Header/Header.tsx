@@ -19,7 +19,7 @@ export default function Header() {
         <div className={styles.center}>
           <div className={styles.link}>
             <NavLink
-              to="/vacancies"
+              to="/vacancies/moscow"
               className={({ isActive }) =>
                 isActive ? `${styles.myLink} ${styles.active}` : styles.myLink
               }

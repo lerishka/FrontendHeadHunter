@@ -9,7 +9,7 @@ export const vacanciesApi = createApi({
       VacancyCard[],
       { searchText?: string; cityId?: string; skills?: string[]; page?: number }
     >({
-      query: ({ searchText = "", cityId = "all", skills = [], page = 1 }) => {
+      query: ({ searchText = "", cityId = "1", skills = [], page = 1 }) => {
         const params = new URLSearchParams();
         let searchQuery = searchText;
 
@@ -27,11 +27,7 @@ export const vacanciesApi = createApi({
           params.append("search_field", "company_name");
         }
 
-        if (!(cityId === "all")) {
-          params.append("area", cityId);
-        } else {
-          params.delete("area");
-        }
+        params.append("area", cityId);
         params.append("page", page.toString());
         params.append("per_page", "10");
 

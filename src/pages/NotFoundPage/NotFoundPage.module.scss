@@ -1,0 +1,38 @@
+.pageWrapper {
+  margin: 0 auto;
+  width: 707px;
+  background-color: #ffffff;
+  margin-top: 52px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 32px;
+  border-radius: 12px;
+}
+
+.headWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.infoWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.title {
+  font-size: 34px;
+  line-height: 130%;
+}
+
+.subtitle {
+  font-size: 18px;
+}

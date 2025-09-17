@@ -1,8 +1,6 @@
-import { useTypedSelector } from "../../hooks/redux";
-import { useGetVacanciesQuery } from "../../services/vacanciesApi";
 import Card from "../../ui/Card/Card";
-import styles from "./VacancyList.module.scss";
 import type { VacancyCard } from "../../types/types";
+import styles from "./VacancyList.module.scss";
 
 export default function VacancyList({
   vacancies,
