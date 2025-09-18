@@ -38,7 +38,10 @@ const router = createBrowserRouter(
       <Route path="user" element={<UserPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Route>
-  )
+  ),
+  {
+    basename: "/FrontendHeadHunter",
+  }
 );
 
 function App() {
