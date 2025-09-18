@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
-import { useTypedSelector } from "../../hooks/redux";
+import { describe, it, expect } from "vitest";
 import { MantineProvider } from "@mantine/core";
 import VacancyList from "./VacancyList";
 import type { VacancyCard } from "../../types/types";
