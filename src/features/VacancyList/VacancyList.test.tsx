@@ -5,12 +5,6 @@ import { MantineProvider } from "@mantine/core";
 import VacancyList from "./VacancyList";
 import type { VacancyCard } from "../../types/types";
 
-vi.mock("../../hooks/redux", () => {
-  return {
-    useTypedSelector: vi.fn(),
-  };
-});
-
 describe("VacancyList component", () => {
   const mockVacancies: VacancyCard[] = [
     {
@@ -43,12 +37,8 @@ describe("VacancyList component", () => {
     render(<MantineProvider>{ui}</MantineProvider>);
   };
 
-  it("should render all vacancies fron redux state", () => {
-    (useTypedSelector as unknown as ReturnType<typeof vi.fn>).mockReturnValue(
-      mockVacancies
-    );
-
-    renderWithProvider(<VacancyList />);
+  it("should render all vacancies from props", () => {
+    renderWithProvider(<VacancyList vacancies={mockVacancies} />);
 
     mockVacancies.forEach((v) => {
       expect(screen.getByText(v.name)).toBeInTheDocument();

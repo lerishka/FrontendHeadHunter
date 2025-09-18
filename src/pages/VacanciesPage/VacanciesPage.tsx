@@ -25,7 +25,6 @@ export default function VacanciesPage() {
     isLoading,
     isError,
     error,
-    isFetching,
   } = useGetVacanciesQuery(
     {
       searchText: filters.searchText,
