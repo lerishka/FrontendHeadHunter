@@ -2,7 +2,7 @@ import {
   Route,
   Navigate,
   createRoutesFromElements,
-  createBrowserRouter,
+  createHashRouter,
   RouterProvider,
 } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout/MainLayout";
@@ -13,7 +13,7 @@ import VacancyPage from "../pages/VacancyPage/VacancyPage";
 import { vacancyLoader } from "../loaders/vacancyLoader";
 import { vacanciesLoader } from "../loaders/vacanciesLoader";
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>
       <Route index element={<Navigate to="/vacancies/moscow" replace />} />
