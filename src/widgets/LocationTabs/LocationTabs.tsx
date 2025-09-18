@@ -2,7 +2,7 @@ import { Tabs } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTypedDispatch } from "../../hooks/redux";
-import { setPage } from "../../store/vacanciesSlice";
+import { setPage, setCityId } from "../../store/vacanciesSlice";
 
 export const LocationTabs = () => {
   const navigate = useNavigate();
@@ -16,9 +16,10 @@ export const LocationTabs = () => {
   }, [location.pathname]);
 
   const handleSelectTab = (value: string | null) => {
-    dispatch(setPage(1));
     if (!value) return;
     setTab(value as "moscow" | "petersburg");
+    dispatch(setCityId(value === "moscow" ? "1" : "2"));
+    dispatch(setPage(1));
     if (value === "moscow") navigate("/vacancies/moscow");
     else if (value === "petersburg") navigate("/vacancies/petersburg");
   };
