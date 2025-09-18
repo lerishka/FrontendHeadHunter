@@ -38,10 +38,10 @@ const router = createHashRouter(
       <Route path="user" element={<UserPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Route>
-  ),
-  {
-    basename: "/FrontendHeadHunter",
-  }
+  )
+  // {
+  //   basename: "/FrontendHeadHunter",
+  // }
 );
 
 function App() {
