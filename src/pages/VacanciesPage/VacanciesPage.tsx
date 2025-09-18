@@ -4,26 +4,20 @@ import SkillsFilter from "../../features/Filters/SkillsFilter/SkillsFilter";
 import VacancyList from "../../features/VacancyList/VacancyList";
 import { useTypedSelector } from "../../hooks/redux";
 import Pagination from "../../ui/Pagination/Pagination";
-import type { RootState } from "../../store";
 import { useGetVacanciesQuery } from "../../services/vacanciesApi";
 import useSyncFiltersWithURL from "../../hooks/urlParams";
 import { useLoaderData } from "react-router-dom";
 import type { VacancyCard } from "../../types/types";
-import { useEffect, useState } from "react";
 import { LocationTabs } from "../../widgets/LocationTabs/LocationTabs";
 import styles from "./VacanciesPage.module.scss";
 
 export default function VacanciesPage() {
-  // Получаем initialVacancies из loader
   const initialVacancies = useLoaderData() as VacancyCard[];
 
-  // Синхронизируем URL с Redux фильтрами
   useSyncFiltersWithURL();
 
-  // Берём фильтры из Redux
   const { filters } = useTypedSelector((state) => state.vacancies);
 
-  // RTK Query всегда вызывает запрос с актуальными фильтрами
   const {
     data: vacanciesData,
     isLoading,
@@ -36,7 +30,6 @@ export default function VacanciesPage() {
     page: filters.page,
   });
 
-  // Для первого рендера используем initialVacancies, если RTK Query ещё не вернул данные
   const vacancies = vacanciesData ?? initialVacancies;
 
   const emptyResult = vacancies.length === 0;

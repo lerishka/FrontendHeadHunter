@@ -1,27 +1,24 @@
 import { Tabs } from "@mantine/core";
-import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useTypedDispatch } from "../../hooks/redux";
-import { setPage, setCityId } from "../../store/vacanciesSlice";
+import { useTypedSelector } from "../../hooks/redux";
 
 export const LocationTabs = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [tab, setTab] = useState<"moscow" | "petersburg">("moscow");
-  const dispatch = useTypedDispatch();
+  const { filters } = useTypedSelector((state) => state.vacancies);
 
-  useEffect(() => {
-    if (location.pathname.includes("petersburg")) setTab("petersburg");
-    else setTab("moscow");
-  }, [location.pathname]);
+  const tab = location.pathname.includes("petersburg")
+    ? "petersburg"
+    : "moscow";
 
   const handleSelectTab = (value: string | null) => {
-    if (!value) return;
-    setTab(value as "moscow" | "petersburg");
-    dispatch(setCityId(value === "moscow" ? "1" : "2"));
-    dispatch(setPage(1));
-    if (value === "moscow") navigate("/vacancies/moscow");
-    else if (value === "petersburg") navigate("/vacancies/petersburg");
+    const searchParams = new URLSearchParams();
+    if (filters.searchText) searchParams.set("searchText", filters.searchText);
+    if (filters.skills.length)
+      searchParams.set("skills", filters.skills.join(","));
+    searchParams.set("page", "1");
+
+    navigate(`/vacancies/${value}?${searchParams.toString()}`);
   };
 
   return (
